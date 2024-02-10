@@ -1,0 +1,44 @@
+{
+  "services": [
+    {
+      "name": "Twitter",
+      "embed_domain": "vxtwitter.com",
+      "resolve_to": "twitter.com"
+    },
+    {
+      "name": "Twitter",
+      "embed_domain": "fxtwitter.com",
+      "resolve_to": "twitter.com"
+    },
+    {
+      "name": "X",
+      "embed_domain": "fixvx.com",
+      "resolve_to": "x.com"
+    },
+    {
+      "name": "X",
+      "embed_domain": "fixupx.com",
+      "resolve_to": "x.com"
+    },
+    {
+      "name": "Reddit",
+      "embed_domain": "rxddit.com",
+      "resolve_to": "reddit.com"
+    },
+    {
+      "name": "Reddit",
+      "embed_domain": "rxyddit.com",
+      "resolve_to": "reddit.com"
+    },
+    {
+      "name": "Twitch",
+      "embed_domain": "ddinstagram.com",
+      "resolve_to": "twitch.tv"
+    },
+    {
+      "name": "Pixiv",
+      "embed_domain": "phixiv.net",
+      "resolve_to": "pixiv.net"
+    }
+  ]
+}

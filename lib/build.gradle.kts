@@ -1,31 +1,29 @@
+import fe.plugin.library.LibraryConfig.Companion.library
+
 plugins {
-    kotlin("jvm")
-    id("net.nemerosa.versioning") version "3.0.0"
-    `maven-publish`
+    id("com.gitlab.grrfe.common-gradle-plugin")
 }
 
-group = "fe.embed.resolve"
-version = versioning.info.tag ?: versioning.info.full
-
-repositories {
-    mavenCentral()
+library("fe.embed-resolve") {
+    jvm.set(17)
 }
 
 dependencies {
-    testImplementation(kotlin("test"))
+    relocate("com.gitlab.grrfe:gson-ext:11.0.0")
+    relocate("com.google.code.gson:gson:2.10.1")
+    relocate("com.github.1fexd:uriparser:0.0.10")
+    relocate("com.github.1fexd:tld-lib:1.0.1")
+    relocate("com.github.1fexd:signifykt:0.0.2")
 }
 
-tasks.test {
-    useJUnitPlatform()
-}
+//afterEvaluate {
+//    tasks.withType<ShadowJar>() {
+//
+//    }
 
-publishing {
-    publications {
-        create<MavenPublication>("maven") {
-            groupId = project.group.toString()
-            version = project.version.toString()
-
-            from(components["java"])
-        }
-    }
-}
+//    tasks.getByName(ShadowJavaPlugin.SHADOW_JAR_TASK_NAME) {
+//        from(project.rootDir) {
+//            include("files/1.0.0.json")
+//        }
+//    }
+//}
