@@ -7,7 +7,10 @@ import java.io.InputStream
 interface Config
 
 sealed class ConfigType(val inputStream: InputStream?) {
-    data object Bundled : ConfigType(BundledJsonLoader::class.java.getResourceAsStream("bundled.json"))
+    class Bundled : ConfigType(BundledJsonLoader::class.java.getResourceAsStream("bundled.json")) {
+
+    }
+
     class Remote(inputStream: InputStream) : ConfigType(inputStream) {
         // TODO: Rework remote fetching
     }
