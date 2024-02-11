@@ -13,7 +13,7 @@ dependencies {
     relocate("com.google.code.gson:gson:2.10.1")
     relocate("com.github.1fexd:uriparser:0.0.10")
     relocate("com.github.1fexd:tld-lib:1.0.1")
-    relocate("com.github.1fexd:signifykt:0.0.2")
+    relocate("com.github.1fexd:signifykt:0.0.5")
 }
 
 //afterEvaluate {
