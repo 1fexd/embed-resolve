@@ -8,7 +8,9 @@ interface Config
 
 sealed class ConfigType(val inputStream: InputStream?) {
     data object Bundled : ConfigType(BundledJsonLoader::class.java.getResourceAsStream("bundled.json"))
-    class Remote(inputStream: InputStream) : ConfigType(inputStream)
+    class Remote(inputStream: InputStream) : ConfigType(inputStream) {
+        // TODO: Rework remote fetching
+    }
 }
 
 
