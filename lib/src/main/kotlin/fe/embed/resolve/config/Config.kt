@@ -7,8 +7,12 @@ import java.io.InputStream
 interface Config
 
 sealed class ConfigType(val inputStream: InputStream?) {
-    class Bundled : ConfigType(BundledJsonLoader::class.java.getResourceAsStream("bundled.json")) {
-
+    class Bundled(inputStream: InputStream) : ConfigType(inputStream) {
+        companion object {
+            fun load(name: String = "bundled.json"): Bundled {
+                return Bundled(BundledJsonLoader::class.java.getResourceAsStream(name)!!)
+            }
+        }
     }
 
     class Remote(inputStream: InputStream) : ConfigType(inputStream) {
