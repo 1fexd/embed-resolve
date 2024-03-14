@@ -19,8 +19,7 @@ object EmbedResolver {
     val publicKey = PublicKey.fromString("RWQazSQ29JJBtHn/Vze0iWHWGlkMUlKFQLOt2EdbTo4ToTx40uV8r8N/")
 
     fun resolve(uriString: String, configType: ConfigType): String? {
-        val config = parseConfig<ConfigV1>(configType.inputStream!!)
-        return ResolverV1.resolve(uriString, config)
+        return ResolverV1.resolve(uriString, configType.config)
     }
 
     inline fun <reified T> parseIfValid(fileStream: InputStream, signatureStream: InputStream): T? {
