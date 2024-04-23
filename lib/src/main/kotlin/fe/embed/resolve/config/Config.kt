@@ -9,8 +9,8 @@ interface Config
 sealed class ConfigType(val config: ConfigV1) {
     class Bundled(config: ConfigV1) : ConfigType(config) {
         companion object {
-            fun load(name: String = "bundled.json"): Bundled {
-                return Bundled(parseConfig<ConfigV1>(BundledJsonLoader::class.java.getResourceAsStream(name)!!))
+            fun load(): Bundled {
+                return Bundled(parseConfig<ConfigV1>(BundledJsonLoader.getBuiltIn()))
             }
         }
     }
