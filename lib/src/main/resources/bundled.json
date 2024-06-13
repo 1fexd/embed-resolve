@@ -11,6 +11,11 @@
       "resolve_to": "twitter.com"
     },
     {
+      "name": "Twitter",
+      "embed_domain": "twittpr.com",
+      "resolve_to": "twitter.com"
+    },
+    {
       "name": "X",
       "embed_domain": "fixvx.com",
       "resolve_to": "x.com"
