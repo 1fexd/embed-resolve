@@ -1,6 +1,7 @@
 package fe.embed.resolve.config
 
 import BundledJsonLoader
+import fe.embed.resolve.EmbedResolver
 import fe.gson.GlobalGsonContext
 import java.io.InputStream
 
@@ -22,5 +23,5 @@ sealed class ConfigType(val config: ConfigV1) {
 
 
 inline fun <reified T : Config> parseConfig(inputStream: InputStream): T {
-    return inputStream.bufferedReader().use { GlobalGsonContext.gson.fromJson(it, T::class.java) }
+    return inputStream.bufferedReader().use { EmbedResolver.gson.fromJson(it, T::class.java) }
 }

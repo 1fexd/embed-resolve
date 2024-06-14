@@ -6,6 +6,8 @@ data class ConfigV1(val services: List<ServiceV1>) : Config
 
 data class ServiceV1(
     val name: String,
-    @SerializedName(value = "resolve_to") val resolveTo: String,
-    @SerializedName(value = "embed_domain") val embedDomain: String
+    val domain: String,
+    val pattern: Regex,
+    @SerializedName(value = "ignore_pattern") val ignorePattern: Regex? = null,
+    @SerializedName(value = "embed_domains") val embedDomains: Set<String>
 )

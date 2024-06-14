@@ -10,12 +10,14 @@ object ResolverV1 : Resolver<ConfigV1> {
         if (result !is UriParseResult.ParsedUri) return null
 
         val host = result.host ?: return null
-        val service = config.services.firstOrNull { it.embedDomain == host } ?: return null
+        val service = config.services.firstOrNull { host in it.embedDomains } ?: return null
 
-        val startIdx = uriString.indexOf(host)
-        val endIdx = startIdx + host.length
+        val path = result.getPath()
+        if (service.ignorePattern?.matches(path) == true) return null
 
-        val newUri = uriString.substring(0, startIdx) + service.resolveTo + uriString.substring(endIdx)
-        return newUri
+        val match = service.pattern.matchEntire(path) ?: return null
+
+        val (_, relevantPath) = match.groupValues
+        return "${result.scheme}://${service.domain}$relevantPath"
     }
 }
