@@ -2,7 +2,6 @@ package fe.embed.resolve.config
 
 import BundledJsonLoader
 import fe.embed.resolve.EmbedResolver
-import fe.gson.GlobalGsonContext
 import java.io.InputStream
 
 interface Config
