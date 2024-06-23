@@ -5,7 +5,7 @@ pluginManagement {
     repositories {
         mavenCentral()
         gradlePluginPortal()
-        maven { url = uri("https://jitpack.io") }
+        maven(url = "https://jitpack.io")
     }
 
     resolutionStrategy {

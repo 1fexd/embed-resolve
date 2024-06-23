@@ -12,7 +12,6 @@ dependencies {
     implementation("fe.gson-ext:core")
     implementation("fe.uribuilder:uriparser")
     implementation("fe.signify:lib")
-    implementation("fe.tld-lib:lib")
 
 //    relocate("com.github.1fexd:tld-lib:1.0.1")
 //    relocate("com.github.1fexd:signifykt:0.0.5")
