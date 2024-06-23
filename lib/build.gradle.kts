@@ -19,7 +19,7 @@ dependencies {
     implementation("com.gitlab.grrfe.gson-ext:core:16.0.0-gson2-koin3")
     implementation("com.github.1fexd:uriparser:0.0.11")
     implementation("com.github.1fexd:tld-lib:2.1.0")
-    implementation("com.github.1fexd:signifykt:0.0.5")
+    implementation("com.github.1fexd.signifykt:lib:0.0.5")
 
 //    bundle("com.gitlab.grrfe:gson-ext:11.0.0") { minimize = true }
 //    bundle("com.google.code.gson:gson:2.10.1") { minimize = true }
