@@ -22,7 +22,6 @@ include("lib")
 if (System.getenv("JITPACK")?.toBooleanStrictOrNull() != false) {
     include("testing")
 }
-includeBuild("../gson-ext")
-includeBuild("../uriparser")
-includeBuild("../signify")
-includeBuild("../tld-lib")
+
+//includeBuild("../signify")
+//includeBuild("../tld-lib")
