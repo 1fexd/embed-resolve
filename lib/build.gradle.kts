@@ -16,7 +16,7 @@ dependencies {
 //    implementation("com.gitlab.grrfe.gson-ext:core:16.0.0-gson2-koin3")
 //    implementation("fe.uribuilder:uriparser")
 //    implementation("fe.signify:lib")
-    api(platform("com.github.1fexd:super:0.0.1"))
+    api(platform("com.github.1fexd:super:0.0.2"))
 
     api("com.gitlab.grrfe.gson-ext:core")
     api("com.github.1fexd:uriparser")
