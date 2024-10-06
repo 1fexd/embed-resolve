@@ -1,4 +1,5 @@
-/.gradle/
-/build/
-/.idea/
-/testing/
+.gradle
+build
+.idea
+testing
+local.properties

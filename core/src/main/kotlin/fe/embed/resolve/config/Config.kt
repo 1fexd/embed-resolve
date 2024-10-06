@@ -20,7 +20,6 @@ sealed class ConfigType(val config: ConfigV1) {
 //    }
 }
 
-
 inline fun <reified T : Config> parseConfig(inputStream: InputStream): T {
     return inputStream.bufferedReader().use { EmbedResolver.gson.fromJson(it, T::class.java) }
 }
