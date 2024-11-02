@@ -77,6 +77,7 @@ if (devProperties != null && isDev && (!isCI && !isJitPack)) {
         this["java-time"] = "java-time"
         this["result-core"] = "result:result-core"
         this["result-assert"] = "result:result-assert"
+        this["uri"] = "uri"
     }
 
     devProperties["gson-ext.dir"].trySubstitute("com.gitlab.grrfe.gson-ext") {
