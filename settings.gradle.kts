@@ -5,17 +5,34 @@ pluginManagement {
     repositories {
         mavenCentral()
         gradlePluginPortal()
-        maven(url = "https://jitpack.io")
+        maven { url = uri("https://jitpack.io") }
     }
 
-    resolutionStrategy {
-        eachPlugin {
-            if (requested.id.id == "com.gitlab.grrfe.common-gradle-plugin") {
-                useModule("${requested.id.id}:library:0.0.39")
-            }
-        }
+    plugins {
+        id("de.fayard.refreshVersions") version "0.60.5"
+        id("net.nemerosa.versioning") version "3.1.0"
+        kotlin("jvm") version "2.0.20"
     }
 }
+
+plugins {
+    id("de.fayard.refreshVersions")
+}
+
+@Suppress("UnstableApiUsage")
+dependencyResolutionManagement {
+    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+    repositories {
+        mavenCentral()
+        gradlePluginPortal()
+        maven { url = uri("https://jitpack.io") }
+        maven { url = uri("https://maven.mozilla.org/maven2") }
+        mavenLocal()
+    }
+}
+
+rootProject.name = "embed-resolve"
+include(":core")
 
 fun substitute(directory: Any, dependency: String, substitutes: Map<String, String>) {
     includeBuild(directory) {
@@ -40,29 +57,42 @@ fun hasEnv(name: String): Boolean {
     return System.getenv(name)?.toBooleanStrictOrNull() == true
 }
 
-rootProject.name = "embed-resolve"
-include(":core")
 
 val isCI = hasEnv("CI")
 val isJitPack = hasEnv("JITPACK")
 
-val substitutes = file("local.properties")
-if (substitutes.exists() && !isCI && !isJitPack) {
-    include(":testing")
+val localProperties = file("local.properties")
+val devProperties: Properties? = if (localProperties.exists()) {
+    Properties().apply {
+        localProperties.reader().use { load(it) }
+    }
+} else null
 
-    val properties = Properties().apply {
-        file("local.properties").reader().use { load(it) }
+val isDev = (devProperties?.get("dev")?.toString()?.toBooleanStrictOrNull() == true)
+
+if (devProperties != null && isDev && (!isCI && !isJitPack)) {
+    devProperties["kotlin-ext.dir"]?.trySubstitute("com.gitlab.grrfe.kotlin-ext") {
+        this["core"] = "core"
+        this["io"] = "io"
+        this["java-time"] = "java-time"
+        this["result-core"] = "result:result-core"
+        this["result-assert"] = "result:result-assert"
     }
 
-    properties["gson-ext.dir"].trySubstitute("com.gitlab.grrfe:gson-ext") {
+    devProperties["gson-ext.dir"].trySubstitute("com.gitlab.grrfe.gson-ext") {
         this["core"] = "core"
     }
 
-    properties["tld-lib.dir"]?.trySubstitute("com.github.1fexd:tld-lib") {
-        this[":"] = "lib"
+    devProperties["httpkt.dir"].trySubstitute("com.gitlab.grrfe.httpkt") {
+        this["core"] = "core"
+        this["ext-gson"] = "ext-gson"
     }
 
-    properties["uriparser.dir"]?.trySubstitute("com.github.1fexd:uriparser")
-    properties["signify.dir"]?.trySubstitute("com.github.1fexd:signifykt")
+    devProperties["koin-app.dir"].trySubstitute("com.gitlab.grrfe.koin-app") {
+        this["core"] = "core"
+        this["api"] = "api"
+        this["cli-core"] = "cli:cli-core"
+        this["exposed-core"] = "exposed:exposed-core"
+        this["exposed-sqlite"] = "exposed:exposed-sqlite"
+    }
 }
-
