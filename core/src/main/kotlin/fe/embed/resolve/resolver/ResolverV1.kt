@@ -1,8 +1,10 @@
 package fe.embed.resolve.resolver
 
 import fe.embed.resolve.config.ConfigV1
+import fe.embed.resolve.config.ServiceV1
 import fe.uribuilder.UriParseResult
 import fe.uribuilder.UriParser
+import org.jetbrains.annotations.VisibleForTesting
 
 object ResolverV1 : Resolver<ConfigV1> {
     override fun resolve(uriString: String, config: ConfigV1): String? {
@@ -15,9 +17,13 @@ object ResolverV1 : Resolver<ConfigV1> {
         val path = result.getPath()
         if (service.ignorePattern?.matches(path) == true) return null
 
-        val match = service.pattern.matchEntire(path) ?: return null
-
-        val (_, relevantPath) = match.groupValues
+        val (_, relevantPath) = isMatch(service, path) ?: return null
         return "${result.scheme}://${service.domain}$relevantPath"
+    }
+
+    @VisibleForTesting
+    fun isMatch(service: ServiceV1, path: String): List<String>? {
+        val match = service.pattern.matchEntire(path) ?: return null
+        return match.groupValues
     }
 }

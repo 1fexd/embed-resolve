@@ -14,4 +14,8 @@ dependencies {
     api("com.github.1fexd:uriparser:_")
     api("com.github.1fexd:tld-lib:_")
     api("com.github.1fexd:signifykt:_")
+    implementation("org.jetbrains:annotations:26.0.1")
+
+    testImplementation(kotlin("test"))
+    testImplementation("com.willowtreeapps.assertk:assertk:_")
 }
