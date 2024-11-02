@@ -30,6 +30,12 @@
       "pattern": "^(\\/.*)$",
       "ignore_pattern": "^(\\/api\\/info.*)$",
       "embed_domains": ["phixiv.net"]
+    },
+    {
+      "name": "Bluesky",
+      "domain": "bsky.app",
+      "pattern": "^(\\/profile\\/((([a-zA-Z0-9]([a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?\\.)+[a-zA-Z]([a-zA-Z0-9-]{0,61}[a-zA-Z0-9]))|did:plc:\\w+)\\/post\\/\\w+).*$",
+      "embed_domains": ["boobsky.app", "bsyy.app", "bskyx.app", "fxbsky.app"]
     }
   ]
 }
