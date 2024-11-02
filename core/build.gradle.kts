@@ -11,17 +11,12 @@ plugins {
 }
 
 group = "fe.embed-resolve"
-version = versioning.info.tag ?: versioning.info.full
 
 dependencies {
-    api(platform("com.github.1fexd:super:_"))
-
-    implementation("org.jetbrains:annotations:26.0.1")
+    implementation("org.jetbrains:annotations:_")
     api(Grrfe.ext.gson)
-    api("com.github.1fexd:tld-lib:_")
     api(_1fexd.signify)
     api(Grrfe.std.uri)
-
     testImplementation(kotlin("test"))
     testImplementation("com.willowtreeapps.assertk:assertk:_")
 }

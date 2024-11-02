@@ -2,7 +2,7 @@ package fe.embed.resolve.resolver
 
 import fe.embed.resolve.config.ConfigV1
 import fe.embed.resolve.config.ServiceV1
-import fe.std.fe.Url
+import fe.std.uri.Url
 import org.jetbrains.annotations.VisibleForTesting
 
 object ResolverV1 : Resolver<ConfigV1> {
