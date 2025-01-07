@@ -9,5 +9,5 @@ data class ServiceV1(
     val domain: String,
     val pattern: Regex,
     @SerializedName(value = "ignore_pattern") val ignorePattern: Regex? = null,
-    @SerializedName(value = "embed_domains") val embedDomains: Set<String>
+    @SerializedName(value = "embed_domains") val embedDomains: Set<String>,
 )

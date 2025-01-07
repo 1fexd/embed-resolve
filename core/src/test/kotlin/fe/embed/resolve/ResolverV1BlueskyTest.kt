@@ -3,15 +3,15 @@ package fe.embed.resolve
 import assertk.assertThat
 import assertk.assertions.isNotNull
 import assertk.assertions.isNull
-import fe.embed.resolve.config.ConfigType.Bundled
+import fe.embed.resolve.loader.BundledEmbedResolveConfigLoader
 import fe.embed.resolve.resolver.ResolverV1
 import org.junit.Test
 
-class ResolverV1BlueskyTest {
+internal class ResolverV1BlueskyTest {
     @Test
     fun testBlueskyRegex() {
-        val bundled = Bundled.load()
-        val service = bundled.config.services.first { it.name == "Bluesky" }
+        val config = BundledEmbedResolveConfigLoader.load().getOrNull()!!
+        val service = config.services.first { it.name == "Bluesky" }
 
         val validHandles = arrayOf(
             "jay.bsky.social",

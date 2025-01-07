@@ -1,25 +1,13 @@
 package fe.embed.resolve.config
 
-import BundledJsonLoader
-import fe.embed.resolve.EmbedResolver
+import fe.embed.resolve.loader.RemoteLoader
 import java.io.InputStream
 
 interface Config
 
-sealed class ConfigType(val config: ConfigV1) {
-    class Bundled(config: ConfigV1) : ConfigType(config) {
-        companion object {
-            fun load(): Bundled {
-                return Bundled(parseConfig<ConfigV1>(BundledJsonLoader.getBuiltIn()))
-            }
-        }
+object ConfigSerializer {
+
+    inline fun <reified T : Config> parseConfig(inputStream: InputStream): T {
+        return inputStream.bufferedReader().use { RemoteLoader.gson.fromJson(it, T::class.java) }
     }
-
-//    class Remote(inputStream: InputStream) : ConfigType(inputStream) {
-//        // TODO: Rework remote fetching
-//    }
-}
-
-inline fun <reified T : Config> parseConfig(inputStream: InputStream): T {
-    return inputStream.bufferedReader().use { EmbedResolver.gson.fromJson(it, T::class.java) }
 }
