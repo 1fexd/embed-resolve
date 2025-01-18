@@ -2,6 +2,7 @@ package fe.embed.resolve
 
 import assertk.assertThat
 import assertk.assertions.isEqualTo
+import assertk.tableOf
 import fe.embed.resolve.loader.BundledEmbedResolveConfigLoader
 import fe.embed.resolve.resolver.ResolverV1
 import org.junit.Test
@@ -67,15 +68,12 @@ internal class ResolverV1Test {
     @Test
     fun testPixiv() {
         val config = BundledEmbedResolveConfigLoader.load().getOrNull()!!
-        val expected = "https://pixiv.net/en/artworks/64616766"
-
-        val urls = arrayOf("phixiv.net").map {
-            "https://$it/en/artworks/64616766"
-        }
-
-        assertEach(urls) { url ->
-            assertThat(ResolverV1.resolve(url, config)).isEqualTo(expected)
-        }
+        tableOf("url", "expected")
+            .row("https://phixiv.net/en/artworks/64616766", "https://pixiv.net/en/artworks/64616766")
+            .row("https://www.phixiv.net/en/artworks/64616766", "https://pixiv.net/en/artworks/64616766")
+            .forAll { url, expected ->
+                assertThat(ResolverV1.resolve(url, config)).isEqualTo(expected)
+            }
     }
 
     @Test

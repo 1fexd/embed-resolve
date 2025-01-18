@@ -29,7 +29,7 @@
       "domain": "pixiv.net",
       "pattern": "^(\\/.*)$",
       "ignore_pattern": "^(\\/api\\/info.*)$",
-      "embed_domains": ["phixiv.net"]
+      "embed_domains": ["phixiv.net", "www.phixiv.net"]
     },
     {
       "name": "Bluesky",
