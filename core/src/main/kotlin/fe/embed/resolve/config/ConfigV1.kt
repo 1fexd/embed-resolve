@@ -2,9 +2,9 @@ package fe.embed.resolve.config
 
 import com.google.gson.annotations.SerializedName
 
-data class ConfigV1(val services: List<ServiceV1>) : Config
+public data class ConfigV1(val services: List<ServiceV1>) : Config
 
-data class ServiceV1(
+public data class ServiceV1(
     val name: String,
     val domain: String,
     val pattern: Regex,

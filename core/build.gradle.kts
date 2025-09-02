@@ -1,5 +1,4 @@
-import fe.buildsrc.dependency.Grrfe
-import fe.buildsrc.dependency._1fexd
+import fe.build.dependencies.Grrfe
 
 
 plugins {
@@ -7,12 +6,16 @@ plugins {
 
 dependencies {
     implementation("org.jetbrains:annotations:_")
-    api(Grrfe.ext.gson)
-    api(_1fexd.signify)
+
+    api(platform(Grrfe.gsonExt.bom))
+    api(Grrfe.gsonExt.core)
+
+    api(platform(Grrfe.std.bom))
     api(Grrfe.std.result.core)
     api(Grrfe.std.uri)
+    api(Grrfe.signify)
 
     testImplementation(kotlin("test"))
     testImplementation("com.willowtreeapps.assertk:assertk:_")
-//    testImplementation(Grrfe.std.test)
+    testImplementation(Grrfe.std.test)
 }

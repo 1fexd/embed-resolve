@@ -6,7 +6,7 @@ import fe.std.result.isFailure
 import fe.std.uri.UrlFactory
 import org.jetbrains.annotations.VisibleForTesting
 
-object ResolverV1 : Resolver<ConfigV1> {
+public object ResolverV1 : Resolver<ConfigV1> {
     override fun resolve(uriString: String, config: ConfigV1): String? {
         val result = UrlFactory.parse(uriString)
         if (result.isFailure()) return null
@@ -23,7 +23,7 @@ object ResolverV1 : Resolver<ConfigV1> {
     }
 
     @VisibleForTesting
-    fun isMatch(service: ServiceV1, path: String): List<String>? {
+    public fun isMatch(service: ServiceV1, path: String): List<String>? {
         val match = service.pattern.matchEntire(path) ?: return null
         return match.groupValues
     }

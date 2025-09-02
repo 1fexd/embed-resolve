@@ -1,4 +1,4 @@
 package fe.embed.resolve
 
-object Resource {
+public object Resource {
 }

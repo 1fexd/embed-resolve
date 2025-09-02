@@ -6,7 +6,7 @@ import com.google.gson.stream.JsonWriter
 import fe.gson.extension.nextStringOrNull
 import java.io.IOException
 
-object RegexTypeAdapter : TypeAdapter<Regex>() {
+public object RegexTypeAdapter : TypeAdapter<Regex>() {
     @Throws(IOException::class)
     override fun write(writer: JsonWriter, pattern: Regex?) {
         writer.value(pattern?.pattern)
