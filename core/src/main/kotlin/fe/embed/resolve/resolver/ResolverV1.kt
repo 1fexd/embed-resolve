@@ -3,16 +3,16 @@ package fe.embed.resolve.resolver
 import fe.embed.resolve.config.ConfigV1
 import fe.embed.resolve.config.ServiceV1
 import fe.std.result.isFailure
-import fe.std.uri.UrlFactory
+import fe.std.uri.StdUrlFactory
 import org.jetbrains.annotations.VisibleForTesting
 
 public object ResolverV1 : Resolver<ConfigV1> {
     override fun resolve(uriString: String, config: ConfigV1): String? {
-        val result = UrlFactory.parse(uriString)
+        val result = StdUrlFactory.parse(uriString)
         if (result.isFailure()) return null
 
         val url = result.value
-        val host = url.host ?: return null
+        val host = url.host
         val service = config.services.firstOrNull { host in it.embedDomains } ?: return null
 
         val path = url.pathString
